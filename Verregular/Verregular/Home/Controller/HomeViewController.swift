@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
     
     @objc
     private func goToTrainViewController() {
-        navigationController?.pushViewController(TrainVerbsViewController(), animated: true)
+        navigationController?.pushViewController(TrainViewController(), animated: true)
         //navigationController?.present(SelectVerbsViewController(), animated: true)
     }
     
