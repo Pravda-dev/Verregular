@@ -15,6 +15,14 @@
 		DD18F4CE2AFACF43005BFC48 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD18F4D02AFACF43005BFC48 /* Localizable.strings */; };
 		DD18F4D32AFAD982005BFC48 /* SelectVerbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD18F4D22AFAD981005BFC48 /* SelectVerbsViewController.swift */; };
 		DD18F4D52AFAD99C005BFC48 /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD18F4D42AFAD99C005BFC48 /* TrainViewController.swift */; };
+		DDE877852AFC13EB0018DE4D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DDE877842AFC13EB0018DE4D /* SnapKit */; };
+		DDE877A72AFC200E0018DE4D /* SelectVerbTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877A62AFC200E0018DE4D /* SelectVerbTableViewCell.swift */; };
+		DDE877A92AFC25410018DE4D /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877A82AFC25410018DE4D /* UIView+Ex.swift */; };
+		DDE877AB2AFC26140018DE4D /* UIStackView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877AA2AFC26140018DE4D /* UIStackView+Ex.swift */; };
+		DDE877B52AFC2CB10018DE4D /*  IrregularVerbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877B32AFC2CB10018DE4D /*  IrregularVerbs.swift */; };
+		DDE877B62AFC2CB10018DE4D /* Verb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877B42AFC2CB10018DE4D /* Verb.swift */; };
+		DDE877B82AFC38360018DE4D /* irregular-verbs.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDE877B72AFC38360018DE4D /* irregular-verbs.csv */; };
+		DDE877BB2AFC3C8C0018DE4D /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = DDE877BA2AFC3C8C0018DE4D /* SwiftCSV */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +37,12 @@
 		DD18F4D12AFACF58005BFC48 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DD18F4D22AFAD981005BFC48 /* SelectVerbsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVerbsViewController.swift; sourceTree = "<group>"; };
 		DD18F4D42AFAD99C005BFC48 /* TrainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainViewController.swift; sourceTree = "<group>"; };
+		DDE877A62AFC200E0018DE4D /* SelectVerbTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVerbTableViewCell.swift; sourceTree = "<group>"; };
+		DDE877A82AFC25410018DE4D /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
+		DDE877AA2AFC26140018DE4D /* UIStackView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ex.swift"; sourceTree = "<group>"; };
+		DDE877B32AFC2CB10018DE4D /*  IrregularVerbs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = " IrregularVerbs.swift"; sourceTree = "<group>"; };
+		DDE877B42AFC2CB10018DE4D /* Verb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Verb.swift; sourceTree = "<group>"; };
+		DDE877B72AFC38360018DE4D /* irregular-verbs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "irregular-verbs.csv"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE877852AFC13EB0018DE4D /* SnapKit in Frameworks */,
+				DDE877BB2AFC3C8C0018DE4D /* SwiftCSV in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				DD18F4C72AFACE73005BFC48 /* String+Ex.swift */,
+				DDE877A82AFC25410018DE4D /* UIView+Ex.swift */,
+				DDE877AA2AFC26140018DE4D /* UIStackView+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -101,7 +119,9 @@
 		DD18F4D62AFAD9A9005BFC48 /* Select */ = {
 			isa = PBXGroup;
 			children = (
-				DD18F4D22AFAD981005BFC48 /* SelectVerbsViewController.swift */,
+				DDE877B22AFC2C790018DE4D /* Model */,
+				DDE877AD2AFC29970018DE4D /* Controller */,
+				DDE877AC2AFC29900018DE4D /* View */,
 			);
 			path = Select;
 			sourceTree = "<group>";
@@ -112,6 +132,32 @@
 				DD18F4D42AFAD99C005BFC48 /* TrainViewController.swift */,
 			);
 			path = Train;
+			sourceTree = "<group>";
+		};
+		DDE877AC2AFC29900018DE4D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDE877A62AFC200E0018DE4D /* SelectVerbTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDE877AD2AFC29970018DE4D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DD18F4D22AFAD981005BFC48 /* SelectVerbsViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DDE877B22AFC2C790018DE4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DDE877B32AFC2CB10018DE4D /*  IrregularVerbs.swift */,
+				DDE877B42AFC2CB10018DE4D /* Verb.swift */,
+				DDE877B72AFC38360018DE4D /* irregular-verbs.csv */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +176,10 @@
 			dependencies = (
 			);
 			name = Verregular;
+			packageProductDependencies = (
+				DDE877842AFC13EB0018DE4D /* SnapKit */,
+				DDE877BA2AFC3C8C0018DE4D /* SwiftCSV */,
+			);
 			productName = Verregular;
 			productReference = DD18F4B02AFACA4D005BFC48 /* Verregular.app */;
 			productType = "com.apple.product-type.application";
@@ -159,6 +209,10 @@
 				ru,
 			);
 			mainGroup = DD18F4A72AFACA4D005BFC48;
+			packageReferences = (
+				DDE877832AFC13EB0018DE4D /* XCRemoteSwiftPackageReference "SnapKit" */,
+				DDE877B92AFC3C8C0018DE4D /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+			);
 			productRefGroup = DD18F4B12AFACA4D005BFC48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -174,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD18F4C02AFACA4E005BFC48 /* LaunchScreen.storyboard in Resources */,
+				DDE877B82AFC38360018DE4D /* irregular-verbs.csv in Resources */,
 				DD18F4CE2AFACF43005BFC48 /* Localizable.strings in Resources */,
 				DD18F4BD2AFACA4E005BFC48 /* Assets.xcassets in Resources */,
 			);
@@ -186,11 +241,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE877A72AFC200E0018DE4D /* SelectVerbTableViewCell.swift in Sources */,
 				DD18F4C82AFACE73005BFC48 /* String+Ex.swift in Sources */,
 				DD18F4B82AFACA4D005BFC48 /* HomeViewController.swift in Sources */,
 				DD18F4D52AFAD99C005BFC48 /* TrainViewController.swift in Sources */,
 				DD18F4B42AFACA4D005BFC48 /* AppDelegate.swift in Sources */,
 				DD18F4D32AFAD982005BFC48 /* SelectVerbsViewController.swift in Sources */,
+				DDE877B62AFC2CB10018DE4D /* Verb.swift in Sources */,
+				DDE877B52AFC2CB10018DE4D /*  IrregularVerbs.swift in Sources */,
+				DDE877AB2AFC26140018DE4D /* UIStackView+Ex.swift in Sources */,
+				DDE877A92AFC25410018DE4D /* UIView+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +478,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DDE877832AFC13EB0018DE4D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		DDE877B92AFC3C8C0018DE4D /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/naoty/SwiftCSV.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DDE877842AFC13EB0018DE4D /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDE877832AFC13EB0018DE4D /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		DDE877BA2AFC3C8C0018DE4D /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDE877B92AFC3C8C0018DE4D /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD18F4A82AFACA4D005BFC48 /* Project object */;
 }

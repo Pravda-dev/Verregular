@@ -67,6 +67,7 @@ final class SelectVerbTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .center
         
         return label
     }()
@@ -75,6 +76,7 @@ final class SelectVerbTableViewCell: UITableViewCell {
         let label = UILabel()
         
         label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .center
         
         return label
     }()
@@ -91,8 +93,19 @@ final class SelectVerbTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Methods
+    func configure(with verb: Verb, isSelected: Bool) {
+        infinitiveLabel.text = verb.infinitive
+        traslationLabel.text = verb.translation
+        pastLabel.text = verb.pastSimple
+        participleLabel.text = verb.participle
+        
+        checkboxImageView.image = isSelected ? State.select.image : State.unselect.image
+    }
+    
     //MARK: - Private Methods
     func setupUI() {
+        selectionStyle = .none
         infinitiveView.addSubviews([infinitiveLabel, traslationLabel])
         stackView.addArrangedSubviews([infinitiveView, pastLabel,participleLabel])
         addSubviews([checkboxImageView, stackView])

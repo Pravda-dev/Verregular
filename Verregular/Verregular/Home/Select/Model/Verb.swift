@@ -5,7 +5,7 @@
 //  Created by pravda on 24.07.2023.
 //
 
-import Foundation
+import UIKit
 
 
 struct Verb {

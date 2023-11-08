@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
+      }
+    },
+    {
+      "identity" : "swiftcsv",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/naoty/SwiftCSV.git",
+      "state" : {
+        "revision" : "b61dcd1b2b1120e751cee4cd64a16ff10364885d",
+        "version" : "0.9.1"
+      }
+    }
+  ],
+  "version" : 2
+}
