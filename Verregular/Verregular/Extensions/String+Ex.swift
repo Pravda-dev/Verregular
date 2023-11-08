@@ -5,6 +5,10 @@
 //  Created by pravda on 07.11.2023.
 //
 
-import Foundation
+import UIKit
 
-extension
+extension String {
+    var localized: String {
+        NSLocalizedString(self, comment: "")
+    }
+}

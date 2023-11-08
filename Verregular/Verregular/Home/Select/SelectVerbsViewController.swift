@@ -5,4 +5,14 @@
 //  Created by pravda on 07.11.2023.
 //
 
-import Foundation
+import UIKit
+
+final class SelectVerbsViewController: UIViewController {
+    
+    //MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .red
+    }
+}

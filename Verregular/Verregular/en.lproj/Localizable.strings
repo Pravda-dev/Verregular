@@ -1,7 +1,10 @@
 /* 
   Localizable.strings
-  Verregular
+  Verregular2.0
 
-  Created by pravda on 07.11.2023.
+  Created by pravda on 08.11.2023.
   
 */
+
+"Select Verbs" = "Select verbs";
+"Train Verbs" = "Train verbs";
