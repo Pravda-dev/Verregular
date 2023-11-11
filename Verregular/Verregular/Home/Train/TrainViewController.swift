@@ -9,12 +9,34 @@ import UIKit
 import SnapKit
 
 final class TrainViewController: UIViewController {
+    
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         
         view.showsVerticalScrollIndicator = false
         
         return view
+    }()
+    
+    private lazy var scoreLabel: UILabel = {
+            let label = UILabel()
+            label.font = .systemFont(ofSize: 16)
+            label.textColor = .black
+            label.textAlignment = .center
+            label.text = "Score: 0"
+            return label
+    }()
+    
+    private lazy var verbCountLabel: UILabel = {
+        let label = UILabel()
+        
+        label.font = .systemFont(ofSize: 16)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.text = "Verb count: "
+//        label.backgroundColor = .blue
+        
+        return label
     }()
     
     private lazy var contentView: UIView = UIView()
@@ -25,7 +47,6 @@ final class TrainViewController: UIViewController {
         label.font = .boldSystemFont(ofSize: 28)
         label.textColor = .black
         label.textAlignment = .center
-        label.text = "Read".uppercased()
         
         return label
     }()
@@ -75,6 +96,7 @@ final class TrainViewController: UIViewController {
         button.backgroundColor = .systemGray5
         button.setTitle("Check".localized, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
+        button.addTarget(self, action: #selector(checkAction), for: .touchUpInside)
         
         
         return button
@@ -82,35 +104,114 @@ final class TrainViewController: UIViewController {
     
     //MARK: - Properties
     private let edgeInsets = 30
+    private let dataSource = IrregularVerbs.shared.selectedVerbs
+    private var currentVerb: Verb? {
+        guard dataSource.count > count else { return nil }
+        dataSource[count]
+        return dataSource[count]
+    }
     
+    private var count = 0 {
+        didSet {
+            infinitiveLabel.text = currentVerb?.infinitive
+            pastSimpleTextField.text = ""
+            participleTextField.text = ""
+        }
+    }
+    
+    private var userScore: Int = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(userScore)"
+            scoreLabel.font = .systemFont(ofSize: 16)
+            scoreLabel.textColor = .systemGreen
+            scoreLabel.textAlignment = .center
+        }
+    }
+    
+    private var verbCurrentCount = 0 {
+        didSet {
+            infinitiveLabel.text = currentVerb?.infinitive
+            pastSimpleTextField.text = ""
+            participleTextField.text = ""
+            
+        }
+    }
+    
+    private var verbCount: Int = 0 {
+        didSet {
+            let totalCount = dataSource.count
+            verbCountLabel.text = "\(verbCurrentCount + 1) / \(totalCount)"
+            verbCountLabel.isHidden = false
+            
+            print("Count updated to: \(verbCurrentCount + 1)")
+        }
+    }
     //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Train verbs".localized
         setupUI()
-        registerForKeyboardNotification()
-        unregisterForKeyboardNotification()
         hideKeyboardWhenTappedAround()
+        
+        infinitiveLabel.text = dataSource.first?.infinitive
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        registerForKeyboardNotification()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        unregisterForKeyboardNotification()
     }
     
     //MARK: - Private methods
+    @objc
+    private func checkAction() {
+        if let currentVerb = currentVerb, checkAnswers() {
+            userScore += 1
+            
+            if currentVerb.infinitive == dataSource.last?.infinitive {
+                navigationController?.popViewController(animated: true)
+            } else {
+                count += 1
+            }
+        } else {
+            checkButton.backgroundColor = .systemRed
+            checkButton.setTitle("Try again", for: .normal)
+            scoreLabel.textColor = .systemRed
+        }
+        
+    }
+    
+    private func checkAnswers() -> Bool {
+        pastSimpleTextField.text?.lowercased() == currentVerb?.pastSimple.lowercased() &&
+        participleTextField.text?.lowercased() == currentVerb?.participle.lowercased()
+    }
+    
     private func setupUI() {
         view.backgroundColor = .white
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubviews([infinitiveLabel,
-                                 pastSimpleLabel,
-                                 pastSimpleTextField,
+                                verbCountLabel,
+                                pastSimpleLabel,
+                                pastSimpleTextField,
                                 participleLabel,
                                 participleTextField,
-                                checkButton])
+                                checkButton,
+                                scoreLabel])
         
         setupConstraints()
     }
     
     private func setupConstraints() {
+        
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -124,6 +225,12 @@ final class TrainViewController: UIViewController {
             make.trailing.leading.equalToSuperview().inset(edgeInsets)
         }
         
+        verbCountLabel.snp.makeConstraints { make in
+            make.top.equalTo(infinitiveLabel.snp.bottom).offset(20)
+            //make.centerX.equalToSuperview()
+            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
         pastSimpleLabel.snp.makeConstraints { make in
             make.top.equalTo(infinitiveLabel.snp.bottom).offset(80)
             make.trailing.leading.equalToSuperview().inset(edgeInsets)
@@ -131,6 +238,11 @@ final class TrainViewController: UIViewController {
         
         pastSimpleTextField.snp.makeConstraints { make in
             make.top.equalTo(pastSimpleLabel.snp.bottom).offset(10)
+            make.trailing.leading.equalToSuperview().inset(edgeInsets)
+        }
+        
+        scoreLabel.snp.makeConstraints { make in
+            make.top.equalTo(participleTextField.snp.bottom).offset(15)
             make.trailing.leading.equalToSuperview().inset(edgeInsets)
         }
         
@@ -153,17 +265,29 @@ final class TrainViewController: UIViewController {
 
 //MARK: - UITextFieldDelegate
 extension TrainViewController: UITextFieldDelegate {
-    //TODO:
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if pastSimpleTextField.isFirstResponder {
+            participleTextField.becomeFirstResponder()
+        } else {
+            scrollView.endEditing(true)
+        }
+        
+        return true
+    }
 }
 
 //MARK: - Keyboard events
 private extension TrainViewController {
     func registerForKeyboardNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func unregisterForKeyboardNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     @objc

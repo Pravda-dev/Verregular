@@ -9,10 +9,19 @@ import Foundation
 import UIKit
 
 class IrregularVerbs {
-    private(set) var verbs: [Verb] = []
+    // Singleton
+    static var shared = IrregularVerbs()
+    private init() {
+        configureVerbs()
+    }
+    
+    //MARK: - Properties
     var selectedVerbs: [Verb] = []
     
-    func configureVerbs() {
+    private(set) var verbs: [Verb] = []
+    
+    //MARK: - Methods
+    private func configureVerbs() {
         verbs = [
         Verb(infinitive: "blow", pastSimple: "blew", participle: "blown"),
         Verb(infinitive: "draw", pastSimple: "drew", participle: "drawn"),
