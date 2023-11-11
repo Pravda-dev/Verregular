@@ -18,6 +18,15 @@ final class TrainViewController: UIViewController {
         return view
     }()
     
+    private lazy var verbCountLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.text = "0/0"
+        return label
+    }()
+    
     private lazy var scoreLabel: UILabel = {
             let label = UILabel()
             label.font = .systemFont(ofSize: 16)
@@ -25,18 +34,6 @@ final class TrainViewController: UIViewController {
             label.textAlignment = .center
             label.text = "Score: 0"
             return label
-    }()
-    
-    private lazy var verbCountLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = .systemFont(ofSize: 16)
-        label.textColor = .black
-        label.textAlignment = .center
-        label.text = "Verb count: "
-//        label.backgroundColor = .blue
-        
-        return label
     }()
     
     private lazy var contentView: UIView = UIView()
@@ -127,34 +124,19 @@ final class TrainViewController: UIViewController {
             scoreLabel.textAlignment = .center
         }
     }
-    
-    private var verbCurrentCount = 0 {
-        didSet {
-            infinitiveLabel.text = currentVerb?.infinitive
-            pastSimpleTextField.text = ""
-            participleTextField.text = ""
-            
-        }
-    }
-    
-    private var verbCount: Int = 0 {
-        didSet {
-            let totalCount = dataSource.count
-            verbCountLabel.text = "\(verbCurrentCount + 1) / \(totalCount)"
-            verbCountLabel.isHidden = false
-            
-            print("Count updated to: \(verbCurrentCount + 1)")
-        }
-    }
     //MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scoreLabel.text = "Score: \(userScore)"
         title = "Train verbs".localized
         setupUI()
         hideKeyboardWhenTappedAround()
         
         infinitiveLabel.text = dataSource.first?.infinitive
+        updateVerbCountLabel()
+        userScore = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -172,21 +154,41 @@ final class TrainViewController: UIViewController {
     //MARK: - Private methods
     @objc
     private func checkAction() {
-        if let currentVerb = currentVerb, checkAnswers() {
+        if checkAnswers() {
+            count += 1
             userScore += 1
-            
-            if currentVerb.infinitive == dataSource.last?.infinitive {
-                navigationController?.popViewController(animated: true)
+            updateVerbCountLabel()
+            if count == dataSource.count {
+                showScoreAlert()
+                }
             } else {
-                count += 1
-            }
-        } else {
-            checkButton.backgroundColor = .systemRed
+            checkButton.backgroundColor = .systemGray5
             checkButton.setTitle("Try again", for: .normal)
             scoreLabel.textColor = .systemRed
         }
-        
     }
+
+    private func showScoreAlert() {
+        let alertController = UIAlertController(title: "Training Completed",
+                                                message: "Your score is \(userScore)",
+                                                preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+
+    
+    private func updateVerbCountLabel() {
+        let currentCount = count + 1
+        let totalCount = dataSource.count
+        verbCountLabel.text = "\(currentCount)/\(totalCount)"
+    }
+
     
     private func checkAnswers() -> Bool {
         pastSimpleTextField.text?.lowercased() == currentVerb?.pastSimple.lowercased() &&
@@ -226,8 +228,7 @@ final class TrainViewController: UIViewController {
         }
         
         verbCountLabel.snp.makeConstraints { make in
-            make.top.equalTo(infinitiveLabel.snp.bottom).offset(20)
-            //make.centerX.equalToSuperview()
+            make.top.equalTo(infinitiveLabel.snp.bottom).offset(15)
             make.trailing.leading.equalToSuperview().inset(edgeInsets)
         }
         

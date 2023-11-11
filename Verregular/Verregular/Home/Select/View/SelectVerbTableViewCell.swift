@@ -94,6 +94,7 @@ final class SelectVerbTableViewCell: UITableViewCell {
     }
     
     //MARK: - Methods
+    
     func configure(with verb: Verb, isSelected: Bool) {
         infinitiveLabel.text = verb.infinitive
         traslationLabel.text = verb.translation
