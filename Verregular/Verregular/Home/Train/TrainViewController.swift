@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+
 final class TrainViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
