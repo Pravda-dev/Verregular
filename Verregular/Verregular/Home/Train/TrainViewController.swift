@@ -19,6 +19,18 @@ final class TrainViewController: UIViewController {
         return view
     }()
     
+    private lazy var contentView: UIView = UIView()
+    
+    private lazy var infinitiveLabel: UILabel = {
+        
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 28)
+        label.textColor = .black
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     private lazy var verbCountLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
@@ -35,18 +47,6 @@ final class TrainViewController: UIViewController {
             label.textAlignment = .center
             label.text = "Score: 0"
             return label
-    }()
-    
-    private lazy var contentView: UIView = UIView()
-    
-    private lazy var infinitiveLabel: UILabel = {
-        
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 28)
-        label.textColor = .black
-        label.textAlignment = .center
-        
-        return label
     }()
     
     private lazy var pastSimpleLabel: UILabel = {
@@ -272,7 +272,7 @@ extension TrainViewController: UITextFieldDelegate {
             participleTextField.becomeFirstResponder()
         } else {
             scrollView.endEditing(true)
-        }
+        } 
         
         return true
     }

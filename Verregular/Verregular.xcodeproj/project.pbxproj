@@ -15,14 +15,14 @@
 		DD18F4CE2AFACF43005BFC48 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD18F4D02AFACF43005BFC48 /* Localizable.strings */; };
 		DD18F4D32AFAD982005BFC48 /* SelectVerbsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD18F4D22AFAD981005BFC48 /* SelectVerbsViewController.swift */; };
 		DD18F4D52AFAD99C005BFC48 /* TrainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD18F4D42AFAD99C005BFC48 /* TrainViewController.swift */; };
-		DDE877852AFC13EB0018DE4D /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DDE877842AFC13EB0018DE4D /* SnapKit */; };
+		DD56920F2B0130EE000A76DC /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = DD56920E2B0130EE000A76DC /* SwiftCSV */; };
+		DD5692122B0130FA000A76DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = DD5692112B0130FA000A76DC /* SnapKit */; };
 		DDE877A72AFC200E0018DE4D /* SelectVerbTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877A62AFC200E0018DE4D /* SelectVerbTableViewCell.swift */; };
 		DDE877A92AFC25410018DE4D /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877A82AFC25410018DE4D /* UIView+Ex.swift */; };
 		DDE877AB2AFC26140018DE4D /* UIStackView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877AA2AFC26140018DE4D /* UIStackView+Ex.swift */; };
 		DDE877B52AFC2CB10018DE4D /*  IrregularVerbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877B32AFC2CB10018DE4D /*  IrregularVerbs.swift */; };
 		DDE877B62AFC2CB10018DE4D /* Verb.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE877B42AFC2CB10018DE4D /* Verb.swift */; };
 		DDE877B82AFC38360018DE4D /* irregular-verbs.csv in Resources */ = {isa = PBXBuildFile; fileRef = DDE877B72AFC38360018DE4D /* irregular-verbs.csv */; };
-		DDE877BB2AFC3C8C0018DE4D /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = DDE877BA2AFC3C8C0018DE4D /* SwiftCSV */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,8 +50,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDE877852AFC13EB0018DE4D /* SnapKit in Frameworks */,
-				DDE877BB2AFC3C8C0018DE4D /* SwiftCSV in Frameworks */,
+				DD56920F2B0130EE000A76DC /* SwiftCSV in Frameworks */,
+				DD5692122B0130FA000A76DC /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,8 +177,8 @@
 			);
 			name = Verregular;
 			packageProductDependencies = (
-				DDE877842AFC13EB0018DE4D /* SnapKit */,
-				DDE877BA2AFC3C8C0018DE4D /* SwiftCSV */,
+				DD56920E2B0130EE000A76DC /* SwiftCSV */,
+				DD5692112B0130FA000A76DC /* SnapKit */,
 			);
 			productName = Verregular;
 			productReference = DD18F4B02AFACA4D005BFC48 /* Verregular.app */;
@@ -210,8 +210,8 @@
 			);
 			mainGroup = DD18F4A72AFACA4D005BFC48;
 			packageReferences = (
-				DDE877832AFC13EB0018DE4D /* XCRemoteSwiftPackageReference "SnapKit" */,
-				DDE877B92AFC3C8C0018DE4D /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+				DD56920D2B0130EE000A76DC /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+				DD5692102B0130FA000A76DC /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = DD18F4B12AFACA4D005BFC48 /* Products */;
 			projectDirPath = "";
@@ -480,15 +480,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DDE877832AFC13EB0018DE4D /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.6.0;
-			};
-		};
-		DDE877B92AFC3C8C0018DE4D /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+		DD56920D2B0130EE000A76DC /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/naoty/SwiftCSV.git";
 			requirement = {
@@ -496,18 +488,26 @@
 				minimumVersion = 0.9.1;
 			};
 		};
+		DD5692102B0130FA000A76DC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DDE877842AFC13EB0018DE4D /* SnapKit */ = {
+		DD56920E2B0130EE000A76DC /* SwiftCSV */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DDE877832AFC13EB0018DE4D /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		DDE877BA2AFC3C8C0018DE4D /* SwiftCSV */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DDE877B92AFC3C8C0018DE4D /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			package = DD56920D2B0130EE000A76DC /* XCRemoteSwiftPackageReference "SwiftCSV" */;
 			productName = SwiftCSV;
+		};
+		DD5692112B0130FA000A76DC /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD5692102B0130FA000A76DC /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
